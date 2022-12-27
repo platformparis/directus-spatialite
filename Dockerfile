@@ -16,3 +16,5 @@ VOLUME \
   /directus/database \
   /directus/extensions \
   /directus/uploads
+
+CMD npx directus bootstrap && npx directus start
