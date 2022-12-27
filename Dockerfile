@@ -6,15 +6,18 @@ RUN \
   apk upgrade --no-cache && apk add --no-cache \
   libspatialite sqlite-dev
 
-COPY --chown=node:node ./extensions/hooks/spatialite/index.js /directus/extensions/hooks/spatialite/index.js
-
 USER node
 WORKDIR /directus
 
-# Expose data directories as volumes
-VOLUME \
-  /directus/database \
-  /directus/extensions \
-  /directus/uploads
+RUN \
+  # Create data directories
+  mkdir -p \
+    extensions/hooks/spatialite
 
-CMD npx directus bootstrap && npx directus start
+COPY --chown=node:node ./extensions/hooks/spatialite/index.js /directus/extensions/hooks/spatialite/index.js
+
+# Prevents the previous COPY instruction to be discarded by the upstreem VOLUME instruction
+# (Upstream has declared a /directus/extensions VOLUME)
+# Ref: https://docs.docker.com/engine/reference/builder/#notes-about-specifying-volumes
+VOLUME \
+  /directus/extensions/hooks/spatialite
