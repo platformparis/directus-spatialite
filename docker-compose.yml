@@ -2,7 +2,7 @@ version: '3'
 services:
   directus:
     build: .
-    image: ghcr.io/noops-land/directus:latest
+    image: ghcr.io/noops-land/directus-spatialite:latest
     ports:
       - 8055:8055
     # volumes:

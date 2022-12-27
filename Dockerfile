@@ -10,3 +10,9 @@ COPY --chown=node:node ./extensions/hooks/spatialite/index.js /directus/extensio
 
 USER node
 WORKDIR /directus
+
+# Expose data directories as volumes
+VOLUME \
+  /directus/database \
+  /directus/extensions \
+  /directus/uploads
