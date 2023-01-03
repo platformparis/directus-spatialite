@@ -9,6 +9,8 @@ RUN \
 USER node
 WORKDIR /directus
 
+COPY ./patches /directus/patches
+
 RUN \
   # Create data directories
   mkdir -p \
