@@ -10,7 +10,7 @@ USER node
 WORKDIR /directus
 
 COPY ./patches /directus/patches
-RUN npm install --no-package-lock
+RUN npx patch-package
 
 RUN \
   # Create data directories
