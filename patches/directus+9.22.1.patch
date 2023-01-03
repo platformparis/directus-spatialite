@@ -1,0 +1,19 @@
+diff --git a/node_modules/directus/dist/middleware/error-handler.js b/node_modules/directus/dist/middleware/error-handler.js
+index b98b1fa..2428aee 100644
+--- a/node_modules/directus/dist/middleware/error-handler.js
++++ b/node_modules/directus/dist/middleware/error-handler.js
+@@ -84,12 +84,12 @@ const errorHandler = (err, req, res, _next) => {
+         }
+     }
+     emitter_1.default
+-        .emitFilter('request.error', payload.errors, {}, {
++        .emitFilter('request.error', payload, {}, {
+         database: (0, database_1.default)(),
+         schema: req.schema,
+         accountability: (_b = req.accountability) !== null && _b !== void 0 ? _b : null,
+     })
+-        .then(() => {
++        .then((payload) => {
+         return res.json(payload);
+     });
+ };
